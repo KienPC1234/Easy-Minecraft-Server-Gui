@@ -30,10 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormInfo));
             kryptonPanel1 = new Krypton.Toolkit.KryptonPanel();
+            kryptonLabel1 = new Krypton.Toolkit.KryptonLabel();
             kryptonButton1 = new Krypton.Toolkit.KryptonButton();
             label1 = new Label();
             kryptonToolkitPoweredByControl1 = new Krypton.Toolkit.KryptonToolkitPoweredByControl();
-            kryptonLabel1 = new Krypton.Toolkit.KryptonLabel();
             ((System.ComponentModel.ISupportInitialize)kryptonPanel1).BeginInit();
             kryptonPanel1.SuspendLayout();
             SuspendLayout();
@@ -49,6 +49,16 @@
             kryptonPanel1.Name = "kryptonPanel1";
             kryptonPanel1.Size = new Size(768, 315);
             kryptonPanel1.TabIndex = 0;
+            // 
+            // kryptonLabel1
+            // 
+            kryptonLabel1.LabelStyle = Krypton.Toolkit.LabelStyle.BoldControl;
+            kryptonLabel1.Location = new Point(4, 246);
+            kryptonLabel1.Name = "kryptonLabel1";
+            kryptonLabel1.Size = new Size(585, 41);
+            kryptonLabel1.TabIndex = 3;
+            kryptonLabel1.Values.Text = "Phần mềm này sử dụng công nghệ từ Zrok để cung cấp khả năng mở server Minecraft \r\ntừ xa một cách dễ dàng. Để biết thêm thông tin, vui lòng truy cập Zrok.";
+            kryptonLabel1.Click += kryptonLabel1_Click;
             // 
             // kryptonButton1
             // 
@@ -78,16 +88,6 @@
             kryptonToolkitPoweredByControl1.Size = new Size(755, 173);
             kryptonToolkitPoweredByControl1.TabIndex = 0;
             kryptonToolkitPoweredByControl1.ToolkitType = Krypton.Toolkit.ToolkitType.Stable;
-            // 
-            // kryptonLabel1
-            // 
-            kryptonLabel1.LabelStyle = Krypton.Toolkit.LabelStyle.BoldControl;
-            kryptonLabel1.Location = new Point(4, 251);
-            kryptonLabel1.Name = "kryptonLabel1";
-            kryptonLabel1.Size = new Size(585, 41);
-            kryptonLabel1.TabIndex = 3;
-            kryptonLabel1.Values.Text = "Phần mềm này sử dụng công nghệ từ Zrok để cung cấp khả năng mở server Minecraft \r\ntừ xa một cách dễ dàng. Để biết thêm thông tin, vui lòng truy cập Zrok.";
-            kryptonLabel1.Click += kryptonLabel1_Click;
             // 
             // FormInfo
             // 
