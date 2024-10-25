@@ -23,5 +23,10 @@ namespace Easy_Minecraft_Server_Gui
         {
             Process.Start(new ProcessStartInfo("https://github.com/KienPC1234") { UseShellExecute = true });
         }
+
+        private void kryptonLabel1_Click(object sender, EventArgs e)
+        {
+            Process.Start(new ProcessStartInfo("https://zrok.io/") { UseShellExecute = true });
+        }
     }
 }

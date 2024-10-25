@@ -30,23 +30,45 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormInfo));
             kryptonPanel1 = new Krypton.Toolkit.KryptonPanel();
-            kryptonToolkitPoweredByControl1 = new Krypton.Toolkit.KryptonToolkitPoweredByControl();
-            label1 = new Label();
             kryptonButton1 = new Krypton.Toolkit.KryptonButton();
+            label1 = new Label();
+            kryptonToolkitPoweredByControl1 = new Krypton.Toolkit.KryptonToolkitPoweredByControl();
+            kryptonLabel1 = new Krypton.Toolkit.KryptonLabel();
             ((System.ComponentModel.ISupportInitialize)kryptonPanel1).BeginInit();
             kryptonPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // kryptonPanel1
             // 
+            kryptonPanel1.Controls.Add(kryptonLabel1);
             kryptonPanel1.Controls.Add(kryptonButton1);
             kryptonPanel1.Controls.Add(label1);
             kryptonPanel1.Controls.Add(kryptonToolkitPoweredByControl1);
             kryptonPanel1.Dock = DockStyle.Fill;
             kryptonPanel1.Location = new Point(0, 0);
             kryptonPanel1.Name = "kryptonPanel1";
-            kryptonPanel1.Size = new Size(768, 435);
+            kryptonPanel1.Size = new Size(768, 315);
             kryptonPanel1.TabIndex = 0;
+            // 
+            // kryptonButton1
+            // 
+            kryptonButton1.Location = new Point(423, 202);
+            kryptonButton1.Name = "kryptonButton1";
+            kryptonButton1.Size = new Size(103, 29);
+            kryptonButton1.TabIndex = 2;
+            kryptonButton1.Values.Text = "Link Github";
+            kryptonButton1.Click += kryptonButton1_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Segoe UI", 13.7454548F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(4, 201);
+            label1.Name = "label1";
+            label1.Size = new Size(413, 30);
+            label1.TabIndex = 1;
+            label1.Text = "Phần Mềm Được Phát Triển Bởi KCD DEV";
             // 
             // kryptonToolkitPoweredByControl1
             // 
@@ -57,31 +79,21 @@
             kryptonToolkitPoweredByControl1.TabIndex = 0;
             kryptonToolkitPoweredByControl1.ToolkitType = Krypton.Toolkit.ToolkitType.Stable;
             // 
-            // label1
+            // kryptonLabel1
             // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI", 13.7454548F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(28, 204);
-            label1.Name = "label1";
-            label1.Size = new Size(413, 30);
-            label1.TabIndex = 1;
-            label1.Text = "Phần Mềm Được Phát Triển Bởi KCD DEV";
-            // 
-            // kryptonButton1
-            // 
-            kryptonButton1.Location = new Point(447, 205);
-            kryptonButton1.Name = "kryptonButton1";
-            kryptonButton1.Size = new Size(103, 29);
-            kryptonButton1.TabIndex = 2;
-            kryptonButton1.Values.Text = "Link Github";
-            kryptonButton1.Click += kryptonButton1_Click;
+            kryptonLabel1.LabelStyle = Krypton.Toolkit.LabelStyle.BoldControl;
+            kryptonLabel1.Location = new Point(4, 251);
+            kryptonLabel1.Name = "kryptonLabel1";
+            kryptonLabel1.Size = new Size(585, 41);
+            kryptonLabel1.TabIndex = 3;
+            kryptonLabel1.Values.Text = "Phần mềm này sử dụng công nghệ từ Zrok để cung cấp khả năng mở server Minecraft \r\ntừ xa một cách dễ dàng. Để biết thêm thông tin, vui lòng truy cập Zrok.";
+            kryptonLabel1.Click += kryptonLabel1_Click;
             // 
             // FormInfo
             // 
             AutoScaleDimensions = new SizeF(8F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(768, 435);
+            ClientSize = new Size(768, 315);
             Controls.Add(kryptonPanel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -99,5 +111,6 @@
         private Krypton.Toolkit.KryptonButton kryptonButton1;
         private Label label1;
         private Krypton.Toolkit.KryptonToolkitPoweredByControl kryptonToolkitPoweredByControl1;
+        private Krypton.Toolkit.KryptonLabel kryptonLabel1;
     }
 }
