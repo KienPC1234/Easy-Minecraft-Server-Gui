@@ -47,24 +47,24 @@
             kryptonPanel1.Dock = DockStyle.Fill;
             kryptonPanel1.Location = new Point(0, 0);
             kryptonPanel1.Name = "kryptonPanel1";
-            kryptonPanel1.Size = new Size(768, 315);
+            kryptonPanel1.Size = new Size(768, 332);
             kryptonPanel1.TabIndex = 0;
             // 
             // kryptonLabel1
             // 
             kryptonLabel1.LabelStyle = Krypton.Toolkit.LabelStyle.BoldControl;
-            kryptonLabel1.Location = new Point(4, 246);
+            kryptonLabel1.Location = new Point(4, 259);
             kryptonLabel1.Name = "kryptonLabel1";
-            kryptonLabel1.Size = new Size(585, 41);
+            kryptonLabel1.Size = new Size(637, 44);
             kryptonLabel1.TabIndex = 3;
             kryptonLabel1.Values.Text = "Phần mềm này sử dụng công nghệ từ Zrok để cung cấp khả năng mở server Minecraft \r\ntừ xa một cách dễ dàng. Để biết thêm thông tin, vui lòng truy cập Zrok.";
             kryptonLabel1.Click += kryptonLabel1_Click;
             // 
             // kryptonButton1
             // 
-            kryptonButton1.Location = new Point(423, 202);
+            kryptonButton1.Location = new Point(459, 212);
             kryptonButton1.Name = "kryptonButton1";
-            kryptonButton1.Size = new Size(103, 29);
+            kryptonButton1.Size = new Size(103, 31);
             kryptonButton1.TabIndex = 2;
             kryptonButton1.Values.Text = "Link Github";
             kryptonButton1.Click += kryptonButton1_Click;
@@ -74,26 +74,26 @@
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 13.7454548F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(4, 201);
+            label1.Location = new Point(4, 212);
             label1.Name = "label1";
-            label1.Size = new Size(413, 30);
+            label1.Size = new Size(449, 31);
             label1.TabIndex = 1;
             label1.Text = "Phần Mềm Được Phát Triển Bởi KCD DEV";
             // 
             // kryptonToolkitPoweredByControl1
             // 
-            kryptonToolkitPoweredByControl1.Location = new Point(4, 13);
-            kryptonToolkitPoweredByControl1.Margin = new Padding(4, 4, 4, 4);
+            kryptonToolkitPoweredByControl1.Location = new Point(4, 14);
+            kryptonToolkitPoweredByControl1.Margin = new Padding(4);
             kryptonToolkitPoweredByControl1.Name = "kryptonToolkitPoweredByControl1";
-            kryptonToolkitPoweredByControl1.Size = new Size(755, 173);
+            kryptonToolkitPoweredByControl1.Size = new Size(755, 182);
             kryptonToolkitPoweredByControl1.TabIndex = 0;
             kryptonToolkitPoweredByControl1.ToolkitType = Krypton.Toolkit.ToolkitType.Stable;
             // 
             // FormInfo
             // 
-            AutoScaleDimensions = new SizeF(8F, 19F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(768, 315);
+            ClientSize = new Size(768, 332);
             Controls.Add(kryptonPanel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");

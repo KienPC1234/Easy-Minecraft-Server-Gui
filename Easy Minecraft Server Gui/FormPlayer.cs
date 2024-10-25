@@ -14,11 +14,11 @@ namespace Easy_Minecraft_Server_Gui
             InitializeComponent();
             if (zrokcode == "ixd88rZAdaue")
             {
-                kryptonLabel4.Text = zrokcode + " (Đây Là Mã Công Cộng, Lưu ý Khi Sử Dụng!)";
+                kryptonLabel2.Text = zrokcode + " (Đây Là Mã Công Cộng, Lưu ý Khi Sử Dụng!)";
             }
             else
             {
-                kryptonLabel4.Text = zrokcode;
+                kryptonLabel2.Text = zrokcode;
             }
         }
 

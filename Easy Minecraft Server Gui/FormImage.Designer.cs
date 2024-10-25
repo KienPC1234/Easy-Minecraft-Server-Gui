@@ -33,11 +33,11 @@
             // 
             // FormImage
             // 
-            AutoScaleDimensions = new SizeF(8F, 19F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.info1;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(875, 523);
+            ClientSize = new Size(983, 551);
             DoubleBuffered = true;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FormImage";

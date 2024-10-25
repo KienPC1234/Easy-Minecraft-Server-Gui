@@ -60,48 +60,48 @@
             kryptonPanel1.Dock = DockStyle.Fill;
             kryptonPanel1.Location = new Point(0, 0);
             kryptonPanel1.Name = "kryptonPanel1";
-            kryptonPanel1.Size = new Size(509, 250);
+            kryptonPanel1.Size = new Size(529, 247);
             kryptonPanel1.TabIndex = 1;
             // 
             // kryptonLinkLabel2
             // 
-            kryptonLinkLabel2.Location = new Point(160, 159);
+            kryptonLinkLabel2.Location = new Point(172, 167);
             kryptonLinkLabel2.Name = "kryptonLinkLabel2";
-            kryptonLinkLabel2.Size = new Size(120, 23);
+            kryptonLinkLabel2.Size = new Size(131, 24);
             kryptonLinkLabel2.TabIndex = 11;
             kryptonLinkLabel2.Values.Text = "Link Vào Zrok API ";
             kryptonLinkLabel2.LinkClicked += kryptonLinkLabel2_LinkClicked;
             // 
             // kryptonLinkLabel1
             // 
-            kryptonLinkLabel1.Location = new Point(12, 159);
+            kryptonLinkLabel1.Location = new Point(12, 167);
             kryptonLinkLabel1.Name = "kryptonLinkLabel1";
-            kryptonLinkLabel1.Size = new Size(132, 23);
+            kryptonLinkLabel1.Size = new Size(144, 24);
             kryptonLinkLabel1.TabIndex = 10;
             kryptonLinkLabel1.Values.Text = "Link Tài Khoản Zrok";
             kryptonLinkLabel1.LinkClicked += kryptonLinkLabel1_LinkClicked;
             // 
             // kryptonLabel4
             // 
-            kryptonLabel4.Location = new Point(12, 101);
+            kryptonLabel4.Location = new Point(12, 106);
             kryptonLabel4.Name = "kryptonLabel4";
-            kryptonLabel4.Size = new Size(464, 23);
+            kryptonLabel4.Size = new Size(505, 24);
             kryptonLabel4.TabIndex = 9;
             kryptonLabel4.Values.Text = "Lưu Ý: Máy Của Người Chơi Và Máy Chủ Phải Cùng Code Mới Chơi Được";
             // 
             // kryptonLabel3
             // 
-            kryptonLabel3.Location = new Point(12, 130);
+            kryptonLabel3.Location = new Point(12, 137);
             kryptonLabel3.Name = "kryptonLabel3";
-            kryptonLabel3.Size = new Size(482, 23);
+            kryptonLabel3.Size = new Size(525, 24);
             kryptonLabel3.TabIndex = 8;
             kryptonLabel3.Values.Text = "Cảnh Báo: Mã \"ixd88rZAdaue\" LÀ MÃ CÔNG CỘNG, CẨN THẬN KHI DÙNG!";
             // 
             // kryptonButton2
             // 
-            kryptonButton2.Location = new Point(461, 67);
+            kryptonButton2.Location = new Point(461, 71);
             kryptonButton2.Name = "kryptonButton2";
-            kryptonButton2.Size = new Size(28, 26);
+            kryptonButton2.Size = new Size(28, 27);
             kryptonButton2.TabIndex = 7;
             kryptonButton2.Values.Image = Properties.Resources.info1;
             kryptonButton2.Values.Text = "kryptonButton2";
@@ -109,27 +109,27 @@
             // 
             // kryptonTextBox1
             // 
-            kryptonTextBox1.Location = new Point(191, 67);
+            kryptonTextBox1.Location = new Point(191, 71);
             kryptonTextBox1.Name = "kryptonTextBox1";
-            kryptonTextBox1.Size = new Size(264, 26);
+            kryptonTextBox1.Size = new Size(264, 27);
             kryptonTextBox1.TabIndex = 6;
             kryptonTextBox1.Text = "ixd88rZAdaue";
             // 
             // kryptonLabel2
             // 
             kryptonLabel2.LabelStyle = Krypton.Toolkit.LabelStyle.BoldPanel;
-            kryptonLabel2.Location = new Point(12, 70);
+            kryptonLabel2.Location = new Point(12, 74);
             kryptonLabel2.Name = "kryptonLabel2";
-            kryptonLabel2.Size = new Size(173, 23);
+            kryptonLabel2.Size = new Size(188, 24);
             kryptonLabel2.TabIndex = 5;
             kryptonLabel2.Values.Text = "Zrok Environment Code: ";
             // 
             // kryptonButton1
             // 
             kryptonButton1.ButtonStyle = Krypton.Toolkit.ButtonStyle.Cluster;
-            kryptonButton1.Location = new Point(200, 209);
+            kryptonButton1.Location = new Point(209, 211);
             kryptonButton1.Name = "kryptonButton1";
-            kryptonButton1.Size = new Size(103, 29);
+            kryptonButton1.Size = new Size(103, 31);
             kryptonButton1.TabIndex = 3;
             kryptonButton1.Values.Text = "Save!";
             kryptonButton1.Click += kryptonButton1_Click;
@@ -137,9 +137,9 @@
             // kryptonLabel1
             // 
             kryptonLabel1.LabelStyle = Krypton.Toolkit.LabelStyle.BoldPanel;
-            kryptonLabel1.Location = new Point(12, 29);
+            kryptonLabel1.Location = new Point(12, 31);
             kryptonLabel1.Name = "kryptonLabel1";
-            kryptonLabel1.Size = new Size(60, 23);
+            kryptonLabel1.Size = new Size(65, 24);
             kryptonLabel1.TabIndex = 2;
             kryptonLabel1.Values.Text = "Theme: ";
             // 
@@ -147,17 +147,17 @@
             // 
             kryptonThemeComboBox1.DropDownWidth = 274;
             kryptonThemeComboBox1.IntegralHeight = false;
-            kryptonThemeComboBox1.Location = new Point(78, 29);
+            kryptonThemeComboBox1.Location = new Point(78, 31);
             kryptonThemeComboBox1.Name = "kryptonThemeComboBox1";
-            kryptonThemeComboBox1.Size = new Size(411, 25);
+            kryptonThemeComboBox1.Size = new Size(411, 26);
             kryptonThemeComboBox1.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             kryptonThemeComboBox1.TabIndex = 1;
             // 
             // FormSetting
             // 
-            AutoScaleDimensions = new SizeF(8F, 19F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(509, 250);
+            ClientSize = new Size(529, 247);
             Controls.Add(kryptonPanel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");

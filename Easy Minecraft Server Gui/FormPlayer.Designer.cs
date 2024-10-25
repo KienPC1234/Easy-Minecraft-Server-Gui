@@ -46,17 +46,17 @@
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 22.2545452F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(12, 24);
+            label1.Location = new Point(3, 9);
             label1.Name = "label1";
-            label1.Size = new Size(624, 46);
+            label1.Size = new Size(697, 51);
             label1.TabIndex = 2;
             label1.Text = "Nhập Mã Mà Chủ Server Gửi Cho Bạn:";
             // 
             // kryptonButton1
             // 
-            kryptonButton1.Location = new Point(209, 190);
+            kryptonButton1.Location = new Point(228, 169);
             kryptonButton1.Name = "kryptonButton1";
-            kryptonButton1.Size = new Size(243, 42);
+            kryptonButton1.Size = new Size(243, 44);
             kryptonButton1.TabIndex = 3;
             kryptonButton1.Values.Text = "Kết Nối!";
             kryptonButton1.Click += kryptonButton1_Click;
@@ -64,27 +64,27 @@
             // kryptonLabel1
             // 
             kryptonLabel1.LabelStyle = Krypton.Toolkit.LabelStyle.BoldControl;
-            kryptonLabel1.Location = new Point(12, 276);
+            kryptonLabel1.Location = new Point(12, 240);
             kryptonLabel1.Name = "kryptonLabel1";
-            kryptonLabel1.Size = new Size(129, 23);
+            kryptonLabel1.Size = new Size(140, 24);
             kryptonLabel1.TabIndex = 4;
             kryptonLabel1.Values.Text = "Mã Zrok Của Bạn:";
             // 
             // kryptonLabel2
             // 
             kryptonLabel2.LabelStyle = Krypton.Toolkit.LabelStyle.BoldPanel;
-            kryptonLabel2.Location = new Point(137, 276);
+            kryptonLabel2.Location = new Point(144, 240);
             kryptonLabel2.Name = "kryptonLabel2";
-            kryptonLabel2.Size = new Size(36, 23);
+            kryptonLabel2.Size = new Size(38, 24);
             kryptonLabel2.TabIndex = 5;
             kryptonLabel2.TabStop = false;
             kryptonLabel2.Values.Text = "Lỗi!";
             // 
             // kryptonLabel4
             // 
-            kryptonLabel4.Location = new Point(95, 152);
+            kryptonLabel4.Location = new Point(103, 121);
             kryptonLabel4.Name = "kryptonLabel4";
-            kryptonLabel4.Size = new Size(464, 23);
+            kryptonLabel4.Size = new Size(505, 24);
             kryptonLabel4.TabIndex = 10;
             kryptonLabel4.Values.Text = "Lưu Ý: Máy Của Người Chơi Và Máy Chủ Phải Cùng Code Mới Chơi Được";
             // 
@@ -99,28 +99,28 @@
             kryptonPanel1.Dock = DockStyle.Fill;
             kryptonPanel1.Location = new Point(0, 0);
             kryptonPanel1.Name = "kryptonPanel1";
-            kryptonPanel1.Size = new Size(651, 307);
+            kryptonPanel1.Size = new Size(702, 269);
             kryptonPanel1.TabIndex = 0;
             // 
             // kryptonTextBox2
             // 
-            kryptonTextBox2.Location = new Point(95, 102);
+            kryptonTextBox2.Location = new Point(103, 78);
             kryptonTextBox2.Name = "kryptonTextBox2";
-            kryptonTextBox2.Size = new Size(465, 26);
+            kryptonTextBox2.Size = new Size(491, 27);
             kryptonTextBox2.TabIndex = 11;
             // 
             // kryptonTextBox1
             // 
             kryptonTextBox1.Location = new Point(99, 91);
             kryptonTextBox1.Name = "kryptonTextBox1";
-            kryptonTextBox1.Size = new Size(465, 26);
+            kryptonTextBox1.Size = new Size(465, 27);
             kryptonTextBox1.TabIndex = 0;
             // 
             // FormPlayer
             // 
-            AutoScaleDimensions = new SizeF(8F, 19F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(651, 307);
+            ClientSize = new Size(702, 269);
             Controls.Add(kryptonPanel1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Icon = (Icon)resources.GetObject("$this.Icon");
