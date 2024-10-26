@@ -46,11 +46,6 @@ jobs:
       # Copy additional files from src to output    
       - name: Copy Additional Files   
         run: Copy-Item -Recurse -Path .\src\* -Destination ${{ env.Output_Directory }} 
-        #AddZrok
-      - name: Download and add zrok.exe
-        run: |
-         curl -L -o zrok.exe https://github.com/KienPC1234/Easy-Minecraft-Server-Gui/releases/download/zrok/zrok.exe
-         cp zrok.exe "${{ env.Output_Directory }}"
       # Copy all build files to output directory    
       - name: Copy Build Output      
         run: Copy-Item -Recurse -Path "D:\a\Easy-Minecraft-Server-Gui\Easy-Minecraft-Server-Gui\Easy Minecraft Server Gui\bin\${{ matrix.configuration }}\net8.0-windows\*" -Destination ${{ env.Output_Directory }}    
@@ -61,7 +56,7 @@ jobs:
       
       # Upload the build artifacts    
       - name: Upload Build Artifacts      
-        uses: actions/upload-artifact@v3      
+        uses: actions/upload-artifact@v4     
         with:        
-          name: Build Artifacts        
+          name: Easy-Minecraft-Server-Gui_Portable-${{ matrix.configuration }}    
           path: ${{ env.Output_Directory }}/*
