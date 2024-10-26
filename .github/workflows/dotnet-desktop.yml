@@ -53,8 +53,7 @@ jobs:
           Copy-Item -Path .\src\serverOpen.bat -Destination ${{ env.Output_Directory }}    
       # Copy all build files to output directory    
       - name: Copy Build Output      
-        run: |
-          Copy-Item -Recurse -Path "bin\${{ matrix.configuration }}\net8.0-windows\*" -Destination ${{ env.Output_Directory }}
+        run: Copy-Item -Recurse -Path "D:\a\Easy-Minecraft-Server-Gui\Easy-Minecraft-Server-Gui\Easy Minecraft Server Gui\bin\Debug\net8.0-windows\*" -Destination ${{ env.Output_Directory }}    
       # List files in output directory    
       - name: List Output Directory Files      
         run: Get-ChildItem -Recurse ${{ env.Output_Directory }}    
