@@ -40,13 +40,14 @@ jobs:
     - name: Restore the application
       run: dotnet restore "${{ env.Solution_Name }}"
 
+    # Create output directory if it doesn't exist
+    - name: Create Output Directory
+      run: mkdir -p ${{ env.Output_Directory }}
+
     # Build the solution and specify the output path
     - name: Build Solution
       run: msbuild "${{ env.Solution_Name }}" /p:Configuration=${{ matrix.configuration }} /p:OutputPath=${{ env.Output_Directory }}
 
-    # Create output directory if it doesn't exist
-    - name: Create Output Directory
-      run: mkdir -p ${{ env.Output_Directory }}
 
     # Copy additional files from src to output
     - name: Copy Additional Files
