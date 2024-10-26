@@ -37,12 +37,12 @@ jobs:
       # Restore the application to populate the obj folder with RuntimeIdentifiers    
       - name: Restore the application      
         run: dotnet restore "${{ env.Solution_Name }}"    
+      # Build the solution    
+      - name: Build Solution      
+        run: msbuild "${{ env.Solution_Name }}" /p:Configuration=${{ matrix.configuration }}    
       # Create output directory if it doesn't exist    
       - name: Create Output Directory      
         run: New-Item -ItemType Directory -Force -Path ${{ env.Output_Directory }}    
-      # Build the solution and specify the output path    
-      - name: Build Solution      
-        run: msbuild "${{ env.Solution_Name }}" /p:Configuration=${{ matrix.configuration }} /p:OutputPath=${{ env.Output_Directory }}    
       # Copy additional files from src to output    
       - name: Copy Additional Files      
         run: |        
@@ -51,13 +51,9 @@ jobs:
           Copy-Item -Path .\src\help2.png -Destination ${{ env.Output_Directory }}        
           Copy-Item -Path .\src\help3.png -Destination ${{ env.Output_Directory }}        
           Copy-Item -Path .\src\serverOpen.bat -Destination ${{ env.Output_Directory }}    
-      # Copy build output to output directory
+      # Copy all build files to output directory
       - name: Copy Build Output      
-        run: |
-          $binDirs = Get-ChildItem -Directory -Recurse -Filter bin
-          foreach ($dir in $binDirs) {
-            Copy-Item -Recurse -Path "$($dir.FullName)\${{ matrix.configuration }}\*" -Destination ${{ env.Output_Directory }}
-          }
+        run: Copy-Item -Recurse -Path "bin\${{ matrix.configuration }}\net8.0-windows\*" -Destination ${{ env.Output_Directory }}    
       # List files in output directory    
       - name: List Output Directory Files      
         run: Get-ChildItem -Recurse ${{ env.Output_Directory }}    
