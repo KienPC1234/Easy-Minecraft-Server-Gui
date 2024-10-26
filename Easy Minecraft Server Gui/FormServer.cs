@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Krypton.Toolkit;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -134,33 +135,42 @@ namespace Easy_Minecraft_Server_Gui
             
         }
 
-        void OpenServer()
+        async void OpenServer()
         {
-            string tempPath = Path.GetTempPath();
-            string tempFile = Path.Combine(tempPath, "serverIP.tmp");
-            string batchFilePath = Path.Combine(Share.AP, "serverOpen.bat");
-
-            // Kiểm tra nếu file đã tồn tại
-            if (File.Exists(tempFile))
+            string ip = kryptonTextBox1.Text + ":" + kryptonTextBox2.Text;
+            ProcessStartInfo processInfo = new ProcessStartInfo
             {
-                // Xóa nội dung file
-                File.WriteAllText(tempFile, string.Empty);
+                FileName =  Path.Combine(Share.AP,"zrok.exe"),
+                Arguments = $"share private --backend-mode tcpTunnel {ip}",
+                UseShellExecute = true
+            };
+
+            // Ẩn form
+            this.Hide();
+
+            // Khởi chạy tiến trình
+            using (Process process = Process.Start(processInfo))
+            {
+                if (process != null)
+                {
+                    // Chờ tiến trình zrok.exe kết thúc
+                    await Task.Run(() => process.WaitForExit());
+
+                    // Kiểm tra ExitCode
+                    int exitCode = process.ExitCode;
+                    if (exitCode == 1)
+                    {
+                        MessageBox.Show($"Mã Bị Sai Vui Lòng Xem Lại, ExitCode: {exitCode}");
+                        this.Show(); // Hiện lại form
+                        return; // Kết thúc hàm nếu có lỗi
+                    }
+                }
             }
 
-            // Ghi nội dung từ kryptonTextBox2.Text vào file
-            File.WriteAllText(tempFile, kryptonTextBox1.Text+":"+kryptonTextBox2.Text);
-
-            // Kiểm tra nếu file batch tồn tại trước khi chạy
-            if (File.Exists(batchFilePath))
-            {
-                Process.Start(batchFilePath);
-            }
-            else
-            {
-                MessageBox.Show("File connect.bat Lỗi", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            Close();
+            // Nếu không có lỗi, hiện lại form
+            this.Show();
         }
+
         void CreateJsonFile(string filePath)
         {
             var jsonData = new JObject

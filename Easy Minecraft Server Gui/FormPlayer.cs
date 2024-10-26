@@ -1,6 +1,7 @@
 ﻿using Krypton.Toolkit;
 using System;
 using System.Diagnostics;
+using System.Security.Cryptography;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,38 +25,45 @@ namespace Easy_Minecraft_Server_Gui
 
 
 
-        private void kryptonButton1_Click(object sender, EventArgs e)
+        private async void kryptonButton1_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(kryptonTextBox2.Text))
             {
-                MessageBox.Show("Vui Lòng Nhập Đầy Đủ Mã!");
+                MessageBox.Show("Vui Lòng Nhập Đầy Đủ Mã!");
             }
             else
             {
-                string tempPath = Path.GetTempPath();
-                string tempFile = Path.Combine(tempPath, "codezrok.tmp");
-                string batchFilePath = Path.Combine(Share.AP, "connect.bat");
-
-                // Kiểm tra nếu file đã tồn tại
-                if (File.Exists(tempFile))
+                ProcessStartInfo processInfo = new ProcessStartInfo
                 {
-                    // Xóa nội dung file
-                    File.WriteAllText(tempFile, string.Empty);
+                    FileName = Path.Combine(Share.AP, "zrok.exe"),
+                    Arguments = $"access private {kryptonTextBox2.Text}",
+                    UseShellExecute = true
+                };
+
+                // Ẩn form
+                this.Hide();
+
+                // Khởi chạy tiến trình
+                using (Process process = Process.Start(processInfo))
+                {
+                    if (process != null)
+                    {
+                        // Chờ tiến trình zrok.exe kết thúc
+                        await Task.Run(() => process.WaitForExit());
+
+                        // Kiểm tra ExitCode
+                        int exitCode = process.ExitCode;
+                        if (exitCode == 1)
+                        {
+                            MessageBox.Show($"Mã Bị Sai Vui Lòng Xem Lại, ExitCode: {exitCode}");
+                            this.Show(); // Hiện lại form
+                            return; // Kết thúc hàm nếu có lỗi
+                        }
+                    }
                 }
 
-                // Ghi nội dung từ kryptonTextBox2.Text vào file
-                File.WriteAllText(tempFile, kryptonTextBox2.Text);
-
-                // Kiểm tra nếu file batch tồn tại trước khi chạy
-                if (File.Exists(batchFilePath))
-                {
-                    Process.Start(batchFilePath);
-                }
-                else
-                {
-                    MessageBox.Show("File connect.bat Lỗi", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                Close();
+                // Nếu không có lỗi, hiện lại form
+                this.Show();
             }
         }
     }
