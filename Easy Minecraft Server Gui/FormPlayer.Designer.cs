@@ -124,6 +124,7 @@
             Controls.Add(kryptonPanel1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "FormPlayer";
             Text = "Player";
             ((System.ComponentModel.ISupportInitialize)kryptonPanel1).EndInit();

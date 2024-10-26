@@ -199,6 +199,7 @@
             Controls.Add(kryptonPanel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "FormServer";
             Text = "Server";
             ((System.ComponentModel.ISupportInitialize)kryptonPanel1).EndInit();

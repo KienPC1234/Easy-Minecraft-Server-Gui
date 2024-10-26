@@ -16,13 +16,12 @@ namespace Easy_Minecraft_Server_Gui
             ApplicationConfiguration.Initialize();
             if (File.Exists(Path.Combine(Share.AP,"Checker.tmp"))==false)
             {
-                MessageBox.Show("Đây Là Lần Chạy Đầu Tiên Của Bạn, Vui Lòng Chờ Chúng Tôi Setup Cho Bạn...");
+                MessageBox.Show("Đây Là Lần Chạy Đầu Tiên Của Bạn, Vui Lòng Chờ Vài Phút Để Chúng Tôi Setup Cho Bạn...");
                 var output = Share.Command([ "zrok.exe disable", "zrok.exe enable ixd88rZAdaue"]);
 
                 if (!output.Contains("the zrok environment was successfully enabled"))
                 {
-                    MessageBox.Show("Lỗi, Vui Lòng Check File Log!");
-                    Process.Start(Path.Combine(Share.AP, "CMD_LOG.txt"));
+                    MessageBox.Show("Lỗi, Vui Lòng Check File Log CMD_LOG.txt!\n \n"+output);
                     return;
                 }
                 File.Create(Path.Combine(Share.AP, "Checker.tmp"));
