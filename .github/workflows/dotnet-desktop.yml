@@ -39,25 +39,25 @@ jobs:
         run: dotnet restore "${{ env.Solution_Name }}"    
       # Create output directory if it doesn't exist    
       - name: Create Output Directory      
-        run: mkdir -p ${{ env.Output_Directory }}    
+        run: New-Item -ItemType Directory -Force -Path ${{ env.Output_Directory }}    
       # Build the solution and specify the output path    
       - name: Build Solution      
         run: msbuild "${{ env.Solution_Name }}" /p:Configuration=${{ matrix.configuration }} /p:OutputPath=${{ env.Output_Directory }}    
       # Copy additional files from src to output    
       - name: Copy Additional Files      
         run: |        
-          cp ./src/connect.bat ${{ env.Output_Directory }}/        
-          cp ./src/help1.png ${{ env.Output_Directory }}/        
-          cp ./src/help2.png ${{ env.Output_Directory }}/        
-          cp ./src/help3.png ${{ env.Output_Directory }}/        
-          cp ./src/serverOpen.bat ${{ env.Output_Directory }}/    
+          Copy-Item -Path .\src\connect.bat -Destination ${{ env.Output_Directory }}        
+          Copy-Item -Path .\src\help1.png -Destination ${{ env.Output_Directory }}        
+          Copy-Item -Path .\src\help2.png -Destination ${{ env.Output_Directory }}        
+          Copy-Item -Path .\src\help3.png -Destination ${{ env.Output_Directory }}        
+          Copy-Item -Path .\src\serverOpen.bat -Destination ${{ env.Output_Directory }}    
       # Copy build output to output directory
       - name: Copy Build Output      
         run: |
-          cp -r $(find . -type d -name bin)/*/${{ matrix.configuration }}/* ${{ env.Output_Directory }}/
+          Copy-Item -Recurse -Path $(Get-ChildItem -Directory -Recurse -Filter "bin" | ForEach-Object { $_.FullName + "\${{ matrix.configuration }}\*" }) -Destination ${{ env.Output_Directory }}
       # List files in output directory    
       - name: List Output Directory Files      
-        run: ls -R ${{ env.Output_Directory }}    
+        run: Get-ChildItem -Recurse ${{ env.Output_Directory }}    
       # Upload the build artifacts    
       - name: Upload Build Artifacts      
         uses: actions/upload-artifact@v3      
