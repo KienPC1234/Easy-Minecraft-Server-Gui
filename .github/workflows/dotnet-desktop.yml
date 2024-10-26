@@ -46,21 +46,32 @@ jobs:
       # Copy additional files from src to output    
       - name: Copy Additional Files   
         run: Copy-Item -Recurse -Path .\src\* -Destination ${{ env.Output_Directory }}  
-      # Download file from Google Drive    
+      # Download file from Google Drive
       - name: Download File
         run: |
-         $WebClient = New-Object System.Net.WebClient
-         $Url = "https://drive.google.com/uc?export=download&id=1IYMh-qWEs0ofEDp78De4z-OIXOvSjE1_&confirm=t"
-         $WebClient.DownloadFile($Url, "./zrok.exe")
+          $WebClient = New-Object System.Net.WebClient
+          $Url = "https://drive.google.com/uc?export=download&id=1y4m753-a4AVfYlHsdXzKcNZEB_AYGTgm&confirm=t"
+          $WebClient.DownloadFile($Url, "./zrok.zip")
 
-      - name: Copy File to Output Directory      
-        run: Copy-Item -Path "./zrok.exe" -Destination ${{ env.Output_Directory }}   
+      # Extract the zip file
+      - name: Extract Zip File
+        run: |
+          Add-Type -AssemblyName System.IO.Compression.FileSystem
+          [System.IO.Compression.ZipFile]::ExtractToDirectory("./zrok.zip", "./zrok")
+
+      # Copy extracted files to Output Directory
+      - name: Copy File to Output Directory
+        run: |
+          Copy-Item -Path "./zrok/*" -Destination ${{ env.Output_Directory }} -Recurse
+
       # Copy all build files to output directory    
       - name: Copy Build Output      
         run: Copy-Item -Recurse -Path "D:\a\Easy-Minecraft-Server-Gui\Easy-Minecraft-Server-Gui\Easy Minecraft Server Gui\bin\${{ matrix.configuration }}\net8.0-windows\*" -Destination ${{ env.Output_Directory }}    
+      
       # List files in output directory    
       - name: List Output Directory Files      
         run: Get-ChildItem -Recurse ${{ env.Output_Directory }}    
+      
       # Upload the build artifacts    
       - name: Upload Build Artifacts      
         uses: actions/upload-artifact@v3      
