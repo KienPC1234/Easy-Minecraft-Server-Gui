@@ -15,7 +15,7 @@ jobs:
     runs-on: windows-latest
 
     env:
-      Solution_Name: Easy Minecraft Server Gui.sln
+      Solution_Name: "Easy Minecraft Server Gui.sln"
       Test_Project_Path: Easy Minecraft Server Gui\Easy Minecraft Server Gui.csproj
       Output_Directory: ./output
       DOTNET_ROOT: C:\Program Files\dotnet
