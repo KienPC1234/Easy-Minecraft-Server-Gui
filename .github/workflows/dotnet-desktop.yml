@@ -54,7 +54,10 @@ jobs:
       # Copy build output to output directory
       - name: Copy Build Output      
         run: |
-          Copy-Item -Recurse -Path $(Get-ChildItem -Directory -Recurse -Filter "bin" | ForEach-Object { $_.FullName + "\${{ matrix.configuration }}\*" }) -Destination ${{ env.Output_Directory }}
+          $binDirs = Get-ChildItem -Directory -Recurse -Filter bin
+          foreach ($dir in $binDirs) {
+            Copy-Item -Recurse -Path "$($dir.FullName)\${{ matrix.configuration }}\*" -Destination ${{ env.Output_Directory }}
+          }
       # List files in output directory    
       - name: List Output Directory Files      
         run: Get-ChildItem -Recurse ${{ env.Output_Directory }}    
