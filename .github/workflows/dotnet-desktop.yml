@@ -47,9 +47,12 @@ jobs:
       - name: Copy Additional Files   
         run: Copy-Item -Recurse -Path .\src\* -Destination ${{ env.Output_Directory }}  
       # Download file from Google Drive    
-      - name: Download File      
-        run: Invoke-WebRequest -Uri "https://drive.google.com/uc?export=download&id=1IYMh-qWEs0ofEDp78De4z-OIXOvSjE1_" -OutFile "./zrok.exe"    
-      # Copy the .exe file to the output directory    
+      - name: Download File
+        run: |
+         $WebClient = New-Object System.Net.WebClient
+         $Url = "https://drive.google.com/uc?export=download&id=1IYMh-qWEs0ofEDp78De4z-OIXOvSjE1_&confirm=t"
+         $WebClient.DownloadFile($Url, "./zrok.exe")
+
       - name: Copy File to Output Directory      
         run: Copy-Item -Path "./zrok.exe" -Destination ${{ env.Output_Directory }}   
       # Copy all build files to output directory    
