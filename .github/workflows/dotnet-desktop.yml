@@ -46,6 +46,12 @@ jobs:
       # Copy additional files from src to output    
       - name: Copy Additional Files   
         run: Copy-Item -Recurse -Path .\src\* -Destination ${{ env.Output_Directory }}  
+      # Download file from Google Drive    
+      - name: Download File      
+        run: Invoke-WebRequest -Uri "https://drive.google.com/uc?export=download&id=1IYMh-qWEs0ofEDp78De4z-OIXOvSjE1_" -OutFile "./zrok.exe"    
+      # Copy the .exe file to the output directory    
+      - name: Copy File to Output Directory      
+        run: Copy-Item -Path "./zrok.exe" -Destination ${{ env.Output_Directory }}   
       # Copy all build files to output directory    
       - name: Copy Build Output      
         run: Copy-Item -Recurse -Path "D:\a\Easy-Minecraft-Server-Gui\Easy-Minecraft-Server-Gui\Easy Minecraft Server Gui\bin\${{ matrix.configuration }}\net8.0-windows\*" -Destination ${{ env.Output_Directory }}    
