@@ -39,7 +39,7 @@ jobs:
         run: dotnet restore "${{ env.Solution_Name }}"    
       # Build the solution    
       - name: Build Solution      
-        run: msbuild "${{ env.Solution_Name }}" /p:Configuration=${{ matrix.configuration }}    
+        run: msbuild "${{ env.Solution_Name }}" /p:Configuration=${{ matrix.configuration }} /verbosity:diagnostic  # Increase logging verbosity to diagnostic    
       # Create output directory if it doesn't exist    
       - name: Create Output Directory      
         run: New-Item -ItemType Directory -Force -Path ${{ env.Output_Directory }}    
@@ -51,7 +51,7 @@ jobs:
           Copy-Item -Path .\src\help2.png -Destination ${{ env.Output_Directory }}        
           Copy-Item -Path .\src\help3.png -Destination ${{ env.Output_Directory }}        
           Copy-Item -Path .\src\serverOpen.bat -Destination ${{ env.Output_Directory }}    
-      # Copy all build files to output directory
+      # Copy all build files to output directory    
       - name: Copy Build Output      
         run: Copy-Item -Recurse -Path "bin\${{ matrix.configuration }}\net8.0-windows\*" -Destination ${{ env.Output_Directory }}    
       # List files in output directory    
