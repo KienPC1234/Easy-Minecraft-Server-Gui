@@ -58,5 +58,5 @@ jobs:
       - name: Upload Build Artifacts      
         uses: actions/upload-artifact@v4     
         with:        
-          name: Easy-Minecraft-Server-Gui_Portable-${{ github.run_id }}
+          name: Easy-Minecraft-Server-Gui_Portable-${{ matrix.configuration }}    
           path: ${{ env.Output_Directory }}/*
