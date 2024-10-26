@@ -1,66 +1,59 @@
 name: .NET Core Desktop
 
-on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+on: 
+  push:    
+    branches: 
+      - master
+  pull_request:    
+    branches: 
+      - master
 
-jobs:
-  build:
-    strategy:
-      matrix:
-        configuration: [Debug, Release]
-
-    runs-on: windows-latest
-
-    env:
-      Solution_Name: "Easy Minecraft Server Gui.sln"
-      Test_Project_Path: "Easy Minecraft Server Gui/Easy Minecraft Server Gui.csproj"
-      Output_Directory: ./output
-      DOTNET_ROOT: C:\Program Files\dotnet
-
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-
-    # Install .NET SDK
-    - name: Setup .NET SDK
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '8.0.x' # Sử dụng '8.0.x' để tự động lấy phiên bản LTS mới nhất
-
-    # Add MSBuild to the PATH
-    - name: Setup MSBuild.exe
-      uses: microsoft/setup-msbuild@v2
-
-    # Restore the application to populate the obj folder with RuntimeIdentifiers
-    - name: Restore the application
-      run: dotnet restore "${{ env.Solution_Name }}"
-
-    # Create output directory if it doesn't exist
-    - name: Create Output Directory
-      run: mkdir -p ${{ env.Output_Directory }}
-
-    # Build the solution and specify the output path
-    - name: Build Solution
-      run: msbuild "${{ env.Solution_Name }}" /p:Configuration=${{ matrix.configuration }} /p:OutputPath=${{ env.Output_Directory }}
-
-
-    # Copy additional files from src to output
-    - name: Copy Additional Files
-      run: |
-        cp ./src/connect.bat ${{ env.Output_Directory }}/
-        cp ./src/help1.png ${{ env.Output_Directory }}/
-        cp ./src/help2.png ${{ env.Output_Directory }}/
-        cp ./src/help3.png ${{ env.Output_Directory }}/
-        cp ./src/serverOpen.bat ${{ env.Output_Directory }}/
-
-    # Upload the build artifacts
-    - name: Upload Build Artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: Build Artifacts
-        path: ${{ env.Output_Directory }}/*
+jobs:  
+  build:    
+    strategy:      
+      matrix:        
+        configuration: 
+          - Debug
+          - Release    
+    runs-on: windows-latest    
+    env:      
+      Solution_Name: "Easy Minecraft Server Gui.sln"      
+      Test_Project_Path: "Easy Minecraft Server Gui/Easy Minecraft Server Gui.csproj"      
+      Output_Directory: ./output      
+      DOTNET_ROOT: C:\Program Files\dotnet    
+    steps:    
+      - name: Checkout      
+        uses: actions/checkout@v4      
+        with:        
+          fetch-depth: 0    
+      # Install .NET SDK    
+      - name: Setup .NET SDK      
+        uses: actions/setup-dotnet@v4      
+        with:        
+          dotnet-version: '8.0.x' # Sử dụng '8.0.x' để tự động lấy phiên bản LTS mới nhất    
+      # Add MSBuild to the PATH    
+      - name: Setup MSBuild.exe      
+        uses: microsoft/setup-msbuild@v2    
+      # Restore the application to populate the obj folder with RuntimeIdentifiers    
+      - name: Restore the application      
+        run: dotnet restore "${{ env.Solution_Name }}"    
+      # Create output directory if it doesn't exist    
+      - name: Create Output Directory      
+        run: mkdir -p ${{ env.Output_Directory }}    
+      # Build the solution and specify the output path    
+      - name: Build Solution      
+        run: msbuild "${{ env.Solution_Name }}" /p:Configuration=${{ matrix.configuration }} /p:OutputPath=${{ env.Output_Directory }}    
+      # Copy additional files from src to output    
+      - name: Copy Additional Files      
+        run: |        
+          cp ./src/connect.bat ${{ env.Output_Directory }}/        
+          cp ./src/help1.png ${{ env.Output_Directory }}/        
+          cp ./src/help2.png ${{ env.Output_Directory }}/        
+          cp ./src/help3.png ${{ env.Output_Directory }}/        
+          cp ./src/serverOpen.bat ${{ env.Output_Directory }}/    
+      # Upload the build artifacts    
+      - name: Upload Build Artifacts      
+        uses: actions/upload-artifact@v3      
+        with:        
+          name: Build Artifacts        
+          path: ${{ env.Output_Directory }}/*
