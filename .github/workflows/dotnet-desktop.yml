@@ -7,9 +7,7 @@ on:
     branches: [ "master" ]
 
 jobs:
-
   build:
-
     strategy:
       matrix:
         configuration: [Debug, Release]
@@ -40,28 +38,28 @@ jobs:
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application
-      run: dotnet restore $env:Solution_Name
+      run: dotnet restore ${{ env.Solution_Name }}
 
     # Build the solution and specify the output path
     - name: Build Solution
-      run: msbuild "$env:Solution_Name" /p:Configuration=${{ matrix.configuration }} /p:OutputPath=$env:Output_Directory
+      run: msbuild "${{ env.Solution_Name }}" /p:Configuration=${{ matrix.configuration }} /p:OutputPath=${{ env.Output_Directory }}
 
     # Create output directory if it doesn't exist
     - name: Create Output Directory
-      run: mkdir -p $env:Output_Directory
+      run: mkdir -p ${{ env.Output_Directory }}
 
     # Copy additional files from src to output
     - name: Copy Additional Files
       run: |
-        cp ./src/connect.bat $env:Output_Directory/
-        cp ./src/help1.png $env:Output_Directory/
-        cp ./src/help2.png $env:Output_Directory/
-        cp ./src/help3.png $env:Output_Directory/
-        cp ./src/serverOpen.bat $env:Output_Directory/
+        cp ./src/connect.bat ${{ env.Output_Directory }}/
+        cp ./src/help1.png ${{ env.Output_Directory }}/
+        cp ./src/help2.png ${{ env.Output_Directory }}/
+        cp ./src/help3.png ${{ env.Output_Directory }}/
+        cp ./src/serverOpen.bat ${{ env.Output_Directory }}/
 
     # Upload the build artifacts
     - name: Upload Build Artifacts
       uses: actions/upload-artifact@v3
       with:
         name: Build Artifacts
-        path: $env:Output_Directory/*
+        path: ${{ env.Output_Directory }}/*
