@@ -44,13 +44,8 @@ jobs:
       - name: Create Output Directory      
         run: New-Item -ItemType Directory -Force -Path ${{ env.Output_Directory }}    
       # Copy additional files from src to output    
-      - name: Copy Additional Files      
-        run: |        
-          Copy-Item -Path .\src\connect.bat -Destination ${{ env.Output_Directory }}        
-          Copy-Item -Path .\src\help1.png -Destination ${{ env.Output_Directory }}        
-          Copy-Item -Path .\src\help2.png -Destination ${{ env.Output_Directory }}        
-          Copy-Item -Path .\src\help3.png -Destination ${{ env.Output_Directory }}        
-          Copy-Item -Path .\src\serverOpen.bat -Destination ${{ env.Output_Directory }}    
+      - name: Copy Additional Files   
+        run: Copy-Item -Recurse -Path .\src\* -Destination ${{ env.Output_Directory }}  
       # Copy all build files to output directory    
       - name: Copy Build Output      
         run: Copy-Item -Recurse -Path "D:\a\Easy-Minecraft-Server-Gui\Easy-Minecraft-Server-Gui\Easy Minecraft Server Gui\bin\${{ matrix.configuration }}\net8.0-windows\*" -Destination ${{ env.Output_Directory }}    
