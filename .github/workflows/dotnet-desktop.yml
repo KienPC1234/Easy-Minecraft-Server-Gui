@@ -51,6 +51,10 @@ jobs:
           cp ./src/help2.png ${{ env.Output_Directory }}/        
           cp ./src/help3.png ${{ env.Output_Directory }}/        
           cp ./src/serverOpen.bat ${{ env.Output_Directory }}/    
+      # Copy build output to output directory
+      - name: Copy Build Output      
+        run: |
+          cp -r $(find . -type d -name bin)/*/${{ matrix.configuration }}/* ${{ env.Output_Directory }}/
       # List files in output directory    
       - name: List Output Directory Files      
         run: ls -R ${{ env.Output_Directory }}    
