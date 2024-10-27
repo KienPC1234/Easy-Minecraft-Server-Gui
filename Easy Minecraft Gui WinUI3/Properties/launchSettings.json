@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Easy Minecraft Gui WinUI3 (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Easy Minecraft Gui WinUI3 (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
