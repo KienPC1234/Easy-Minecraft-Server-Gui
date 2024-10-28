@@ -6,30 +6,26 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="Transparent">
 
-    <Grid Padding="40">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+    <Grid Padding="30">
+        <TextBlock Text="hehe" 
+       x:Name="ZrokCode"
+       VerticalAlignment="Bottom"
+       HorizontalAlignment="Right"
+       FontSize="15" 
+       FontWeight="Bold" 
+       Margin="0,0,0,20" 
+       Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
 
-        <!-- Content Container with Rounded Corners -->
-        <Border 
-            Grid.Row="1" 
-            Background="{ThemeResource SystemControlBackgroundAltHighBrush}" 
-            CornerRadius="20" 
-            Padding="20" 
-            BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}" 
-            BorderThickness="1">
-
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Nhập Mã Mà Chủ Server Gửi Cho Bạn Để Vào Server" 
-                           FontSize="30" 
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="Nhập Mã Mà Chủ Server Gửi Cho Bạn Để Vào Server" 
+                           FontSize="27" 
                            FontWeight="Bold" 
                            Margin="0,0,0,20" 
                            Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
 
-                <TextBox 
+            <TextBox 
                     x:Name="inputTextBox" 
                     PlaceholderText="Nhập Mã Vào Đây" 
                     HorizontalAlignment="Stretch" 
@@ -37,34 +33,31 @@
                     Width="Auto" 
                     FontSize="18"
                     Padding="10,5"
-                    Background="{ThemeResource SystemControlBackgroundAltMediumHighBrush}"
                     Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
                     BorderThickness="1"
                     BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}"/>
 
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,10" VerticalAlignment="Center">
-                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE7BA;" Foreground="Red" Margin="0,0,10,0" />
-                    <TextBlock 
+            <StackPanel Orientation="Horizontal" Margin="0,-1,0,10" VerticalAlignment="Center">
+                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE7BA;" FontSize="12" Foreground="Red" Margin="0,0,10,0" />
+                <TextBlock 
                         Text="Cảnh báo: Mã Zrok Phải Giống Nhau Mới Kết Nối Được!" 
                         Foreground="Red" 
-                        FontSize="14" 
+                        FontSize="10" 
+                        Margin="-9,0,0,0"
                         VerticalAlignment="Center"/>
-                </StackPanel>
+            </StackPanel>
 
-                <Button 
+            <Button 
                     x:Name="connectButton" 
-                    Background="{ThemeResource SystemControlBackgroundListMediumBrush}" 
-                    Foreground="White"
+                    Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
                     Content="Kết Nối!" 
-                    HorizontalAlignment="Center" 
-                    Margin="0,0,0,10" 
+                    HorizontalAlignment="Left" 
+                    Margin="0,5,0,10" 
                     Click="Button_Click" 
-                    Width="200" 
-                    Height="50" 
                     FontSize="18"
                     CornerRadius="5"/>
 
-                <ProgressRing 
+            <ProgressRing 
                     x:Name="progressRing" 
                     IsActive="False" 
                     Width="50" 
@@ -72,15 +65,7 @@
                     Visibility="Collapsed" 
                     HorizontalAlignment="Center" 
                     Margin="0,20,0,0"
-                    Foreground="White"/>
-
-                <!-- TextBlock hiển thị ở bên trong Border -->
-                <TextBlock x:Name="ZrokCode" Text="Lol"
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Bottom"
-                           Margin="10"
-                           FontSize="13" />
-            </StackPanel>
-        </Border>
+                    Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
+        </StackPanel>
     </Grid>
 </Page>

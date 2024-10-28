@@ -1,13 +1,13 @@
 ﻿using Microsoft.UI;
+using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
 using System;
-using Microsoft.UI.Windowing;
-using WinRT.Interop;
-using Windows.UI.ViewManagement;
 using System.Linq;
-using Microsoft.UI.Xaml.Media.Animation;
+using Windows.UI.ApplicationSettings;
+using WinRT.Interop;
 
 namespace Easy_Minecraft_Gui_WinUI3
 {
@@ -17,36 +17,38 @@ namespace Easy_Minecraft_Gui_WinUI3
         public MainWindow()
         {
             this.InitializeComponent();
-
+            bool Mica = TrySetMicaBackdrop(true);
             m_AppWindow = GetAppWindowForCurrentWindow();
-            m_AppWindow.Title = "Easy Minecraft Gui WinUI3";
             m_AppWindow.SetIcon("server.ico");
             contentFrame.Navigate(typeof(HomePage));
             nvSample.SelectionChanged += NvSample_SelectionChanged;
             contentFrame.Navigated += OnNavigated;
             SetTitleBarColors();
         }
+
+        bool TrySetMicaBackdrop(bool useMicaAlt)
+        {
+            if (Microsoft.UI.Composition.SystemBackdrops.MicaController.IsSupported())
+            {
+                Microsoft.UI.Xaml.Media.MicaBackdrop micaBackdrop = new Microsoft.UI.Xaml.Media.MicaBackdrop();
+                micaBackdrop.Kind = useMicaAlt ? Microsoft.UI.Composition.SystemBackdrops.MicaKind.BaseAlt : Microsoft.UI.Composition.SystemBackdrops.MicaKind.Base;
+                this.SystemBackdrop = micaBackdrop;
+
+                return true; // Succeeded.
+            }
+
+            return false; // Mica is not supported on this system.
+        }
         private void SetTitleBarColors()
         {
-            var uiSettings = new UISettings();
-            var background = uiSettings.GetColorValue(UIColorType.Background);
-            var foreground = uiSettings.GetColorValue(UIColorType.Foreground);
             if (AppWindowTitleBar.IsCustomizationSupported())
             {
                 AppWindowTitleBar m_TitleBar = m_AppWindow.TitleBar;
-                // Set title bar colors based on system theme
-                m_TitleBar.BackgroundColor = background;
-                m_TitleBar.ForegroundColor = foreground;
-                m_TitleBar.ButtonBackgroundColor = background;
-                m_TitleBar.ButtonForegroundColor = foreground;
-                m_TitleBar.ButtonHoverBackgroundColor = Colors.Gray;
-                m_TitleBar.ButtonHoverForegroundColor = Colors.White;
-                m_TitleBar.ButtonPressedBackgroundColor = Colors.DarkGray;
-                m_TitleBar.ButtonPressedForegroundColor = Colors.White;
-                m_TitleBar.InactiveBackgroundColor = Colors.LightGray;
-                m_TitleBar.InactiveForegroundColor = Colors.Gray;
-                m_TitleBar.ButtonInactiveBackgroundColor = Colors.LightGray;
-                m_TitleBar.ButtonInactiveForegroundColor = Colors.Gray;
+                m_TitleBar.ExtendsContentIntoTitleBar = true;
+                m_TitleBar.BackgroundColor = Colors.Transparent; // Màu nền trong suốt
+                m_TitleBar.ButtonBackgroundColor = Colors.Transparent; // Nền nút trong suốt
+                m_TitleBar.ButtonForegroundColor = Colors.White; // Màu nút
+
             }
         }
 
@@ -109,12 +111,12 @@ namespace Easy_Minecraft_Gui_WinUI3
                     pageType = typeof(InfoPage);
                     break;
                 default:
-                    pageType = typeof(HomePage);
+                    pageType = typeof(SettingsPage);
                     break;
             }
             if (pageType != null && contentFrame.CurrentSourcePageType != pageType)
             {
-               contentFrame.Navigate(pageType, null, new DrillInNavigationTransitionInfo());
+                contentFrame.Navigate(pageType, null, new DrillInNavigationTransitionInfo());
             }
         }
 

@@ -49,6 +49,7 @@
     <None Remove="InfoPage.xaml" />
     <None Remove="PlayerPage.xaml" />
     <None Remove="ServerPage.xaml" />
+    <None Remove="SettingsPage.xaml" />
     <None Remove="zrok.exe" />
   </ItemGroup>
 
@@ -79,6 +80,11 @@
   -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="SettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="ServerPage.xaml">
