@@ -7,9 +7,76 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="Transparent">
 
-    <Grid>
-
+    <Grid Padding="20" MinWidth="750" MinHeight="700">
+        <TextBlock Text="Mở Port Cho Server Minecraft" FontSize="30"/>
+        <StackPanel Spacing="10" Margin="0,65,0,0">
+            <TextBlock Text="Cài Đặt Server" FontWeight="Bold" Margin="0,-5,0,0" />
+            <Grid>
+                <Button Height="60" HorizontalAlignment="Stretch" IsEnabled="True"></Button>
+                <FontIcon Glyph="&#xE908;" HorizontalAlignment="Left" FontSize="32" Margin="15,0,0,0"/>
+                <TextBlock FontWeight="Bold" VerticalAlignment="Center" Margin="60,-20,0,0">IP Của Server</TextBlock>
+                <TextBlock VerticalAlignment="Center" FontSize="12" Margin="60,20,0,0">Là IPv4 Của Server, Nên Để Tự Động</TextBlock>
+                <ComboBox x:Name="ComboBoxIP" Margin="0,0,15,0" Width="162" HorizontalAlignment="Right" VerticalAlignment="Center" SelectedValue="Tự Động" SelectionChanged="ComboBox_SelectionChanged">
+                    <x:String>Tự Động</x:String>
+                    <x:String>Thủ Công</x:String>
+                </ComboBox>
+            </Grid>
+            <Grid x:Name="IpBox" Visibility="Collapsed">
+                <Button Height="60" HorizontalAlignment="Stretch" IsEnabled="True"></Button>
+                <FontIcon Glyph="&#xE88A;" HorizontalAlignment="Left" FontSize="32" Margin="15,0,0,0"/>
+                <TextBlock FontWeight="Bold" VerticalAlignment="Center" Margin="60,-20,0,0">IP Của Server</TextBlock>
+                <TextBlock VerticalAlignment="Center" FontSize="12" Margin="60,20,0,0">Vui Lòng Nhập Đầy Đủ</TextBlock>
+                <TextBox x:Name="IpTextBox"
+                    PlaceholderText="XXX.XXX.XXX.XXX"
+                    TextChanged="IpTextBox_TextChanged"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Margin="0,0,15,0"
+                    Width="165"/>
+            </Grid>
+            <Grid>
+                <Button Height="60" HorizontalAlignment="Stretch" IsEnabled="True"></Button>
+                <FontIcon Glyph="&#xF3E2;" HorizontalAlignment="Left" FontSize="32" Margin="15,0,0,0"/>
+                <TextBlock FontWeight="Bold" VerticalAlignment="Center" Margin="60,-20,0,0">Port Của Server</TextBlock>
+                <TextBlock VerticalAlignment="Center" FontSize="12" Margin="60,20,0,0">Vui Lòng Nhập Đầy Đủ</TextBlock>
+                <TextBox x:Name="PortText"
+                    PlaceholderText="Nhập Port (0-65535)"
+                    TextChanged="PortTextBox_TextChanged"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Margin="0,0,15,0"
+                    Width="165"/>
+            </Grid>
+            <TextBlock Text="Mở Server" FontWeight="Bold" Margin="0,8,0,0" />
+            <Grid>
+                <!--Setting Card-->
+                <Button x:Name="Run" Height="60" HorizontalAlignment="Stretch" IsEnabled="True" HorizontalContentAlignment="Left" Click="Run_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon HorizontalAlignment="Left" VerticalAlignment="Center"  Glyph="&#xED5C;" FontSize="35" Margin="5,5,0,0" />
+                        <TextBlock HorizontalAlignment="Right"  Margin="10,2,0,0">
+                            <Run Text="Mở Server" FontWeight="Bold" />
+                            <LineBreak/>
+                            <Run Text="Nhấn Vào Nút Này Mở Port Cho Máy Chủ Minecraft" FontSize="12"/>
+                        </TextBlock>
+                    </StackPanel>
+                </Button>
+                <ProgressBar x:Name="Loader" Width="auto" VerticalAlignment="Bottom" IsIndeterminate="True" ShowPaused="False" ShowError="False" Visibility="Collapsed" />
+            </Grid>
+            <Expander x:Name="Expander2" HorizontalAlignment="Stretch" >
+                <Expander.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon Glyph="&#xE897;"  VerticalAlignment="Center" />
+                        <TextBlock VerticalAlignment="Center" Margin="10,-4,0,0">Trợ Giúp   (Zrok Code: XXXXX)</TextBlock>
+                    </StackPanel>
+                </Expander.Header>
+                <Expander.Content>
+                    <Grid>
+                        <Button Margin="15" Content="This is a Button in the content"/>
+                    </Grid>
+                </Expander.Content>
+            </Expander>
+        </StackPanel>
     </Grid>
 </Page>

@@ -30,15 +30,12 @@ namespace Easy_Minecraft_Gui_WinUI3
             this.InitializeComponent();
         }
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
-        {
-            // Disable the button and textbox
-            connectButton.IsEnabled = false;
-            inputTextBox.IsEnabled = false;
 
-            // Show the progress ring
-            progressRing.Visibility = Visibility.Visible;
-            progressRing.IsActive = true;
+        private void Run_Click(object sender, RoutedEventArgs e)
+        {
+            Run.IsEnabled = false;
+            ServerCode.IsEnabled = false;
+            Loader.Visibility = Visibility.Visible;
 
             // Simulate a process (e.g., connecting to server)
             // After the process is done, you can re-enable the button and hide the progress ring
@@ -47,19 +44,14 @@ namespace Easy_Minecraft_Gui_WinUI3
             {
                 await Task.Delay(3000); // Simulate a 3-second delay
                 // Hide the progress ring
-                progressRing.Visibility = Visibility.Collapsed;
-                progressRing.IsActive = false;
-
-                // Re-enable the button and textbox
-                connectButton.IsEnabled = true;
-                inputTextBox.IsEnabled = true;
+                Loader.Visibility = Visibility.Collapsed;
+                ServerCode.IsEnabled = true;
+                Run.IsEnabled = true;
 
 
-                await Share.ShowDialogAsync(Share.AP,base.XamlRoot);
+
+                await Share.ShowDialogAsync(Share.AP, base.XamlRoot);
             });
-
-            
-            
         }
     }
 }

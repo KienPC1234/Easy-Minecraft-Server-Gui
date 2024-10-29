@@ -45,8 +45,8 @@
     <None Remove="Assets\Wide310x150Logo.scale-125.png" />
     <None Remove="Assets\Wide310x150Logo.scale-150.png" />
     <None Remove="Assets\Wide310x150Logo.scale-400.png" />
+    <None Remove="Assets\zrok.png" />
     <None Remove="HomePage.xaml" />
-    <None Remove="InfoPage.xaml" />
     <None Remove="PlayerPage.xaml" />
     <None Remove="ServerPage.xaml" />
     <None Remove="SettingsPage.xaml" />
@@ -82,6 +82,11 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
+    <Content Update="Assets\zrok.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="SettingsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -93,11 +98,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="PlayerPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="InfoPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

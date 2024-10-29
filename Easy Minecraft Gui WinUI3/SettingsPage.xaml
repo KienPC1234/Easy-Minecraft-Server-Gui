@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <Page
     x:Class="Easy_Minecraft_Gui_WinUI3.SettingsPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -9,7 +8,121 @@
     mc:Ignorable="d"
     Background="Transparent">
 
-    <Grid>
+    <Grid x:Name="MainGrid" Padding="20" MinWidth="750"  MinHeight="800">
+        <TextBlock Text="Settings" FontSize="30"/>
+        <TeachingTip x:Name="TeachingTip"
+                IsLightDismissEnabled="True">
+            <TeachingTip.IconSource>
+                <SymbolIconSource Symbol="Save" />
+            </TeachingTip.IconSource>
+        </TeachingTip>
+        <StackPanel Spacing="10" Margin="0,55,0,0">
+            <TextBlock FontWeight="Bold">App Setting</TextBlock>
+            <Grid>
+                <Button Height="60" HorizontalAlignment="Stretch" IsEnabled="True"></Button>
+                <Image HorizontalAlignment="Left" Source="/Assets/zrok.png" Height="55" Margin="5,0,0,0" />
+                <TextBlock FontWeight="Bold" VerticalAlignment="Center" Margin="60,-20,0,0">Zrok Code</TextBlock>
+                <TextBlock VerticalAlignment="Center" FontSize="11" Margin="60,20,0,0">Cảnh Báo Mã Của Người Mở Sever Và Mã Người Vào Phải Giống Nhau!</TextBlock>
+                <TextBox HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,15,0" PlaceholderText="Nhập Mã Zrok Ở Đây"></TextBox>
+            </Grid>
 
+            <Grid>
+                <Button Height="60" HorizontalAlignment="Stretch" IsEnabled="True"></Button>
+                <FontIcon Glyph="&#xE737;" HorizontalAlignment="Left" FontSize="32" Margin="15,0,0,0"/>
+                <TextBlock FontWeight="Bold" VerticalAlignment="Center" Margin="60,-20,0,0">App Backdrops</TextBlock>
+                <TextBlock VerticalAlignment="Center" FontSize="12" Margin="60,20,0,0">Bối Cảnh Dưới App</TextBlock>
+                <ComboBox x:Name="ComboBox" SelectionChanged="ComboBox_SelectionChanged" Margin="0,0,15,0" Width="162" HorizontalAlignment="Right" VerticalAlignment="Center" SelectedValue="Mica Alt Backdrop">
+                    <x:String>Mica Alt Backdrop</x:String>
+                    <x:String>Acrylic Backdrop</x:String>
+                    <x:String>Mica Backdrop</x:String>
+                </ComboBox>
+            </Grid>
+
+            <Grid>
+                <Button Height="60" HorizontalAlignment="Stretch" IsEnabled="True"></Button>
+                <FontIcon Glyph="&#xE793;"  HorizontalAlignment="Left" FontSize="32" Margin="15,0,0,0"/>
+                <TextBlock FontWeight="Bold" VerticalAlignment="Center" Margin="60,-20,0,0">App Color</TextBlock>
+                <TextBlock VerticalAlignment="Center" FontSize="12" Margin="60,20,0,0">Thay Đổi Màu Của Ứng Dụng</TextBlock>
+                <ComboBox x:Name="ComboBoxLight" SelectionChanged="ComboBoxLight_SelectionChanged" Margin="0,0,15,0" Width="162" HorizontalAlignment="Right" VerticalAlignment="Center" SelectedValue="Tự Động">
+                    <x:String>Dark</x:String>
+                    <x:String>Light</x:String>
+                    <x:String>Tự Động</x:String>
+                </ComboBox>
+            </Grid>
+
+            <Grid>
+                <Button x:Name="Save" Height="60" HorizontalAlignment="Stretch" IsEnabled="True" HorizontalContentAlignment="Left" Click="Save_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon HorizontalAlignment="Left" VerticalAlignment="Center" Glyph="&#xE74E;" FontSize="30" Margin="5,0,0,0" />
+                        <TextBlock HorizontalAlignment="Right" Margin="10,0,0,0">
+                                <Run Text="Lưu Cài Đặt" FontWeight="Bold" />
+                                <LineBreak/>
+                                <Run Text="Nhấn Vào Nút Này Để Lưu Cài Đặt" FontSize="10"/>
+                        </TextBlock>
+                    </StackPanel>
+                </Button>
+                <ProgressBar x:Name="Loader" Width="auto" VerticalAlignment="Bottom" IsIndeterminate="True" ShowPaused="False" ShowError="False" Visibility="Collapsed" />
+            </Grid>
+
+            <TextBlock Text="About" FontWeight="Bold" Margin="0,5,0,0" />
+            <Expander x:Name="Expander2" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left">
+                <Expander.Header>
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+                            <Image Source="server.ico" Height="32.5" />
+                            <TextBlock HorizontalAlignment="Left" Margin="5,-1,0,0">
+                                    <Run Text="Easy Minecraft Gui WinUI3" FontWeight="Bold" />
+                                    <LineBreak/>
+                                    <Run Text="Make By KienPC1234" FontSize="10"/>
+                            </TextBlock>
+                        </StackPanel>
+                        <TextBlock HorizontalTextAlignment="Right" Margin="100,-27.75,0,0">1.0 Beta</TextBlock>
+                    </StackPanel>
+                </Expander.Header>
+                <Expander.Content>
+                    <StackPanel Orientation="Vertical" Spacing="10">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock HorizontalAlignment="Left" Margin="0,0,0,0" Text="To clone this repository:"/>
+                            <Button x:Name="Copy" Click="Copy_Click" HorizontalContentAlignment="Left" Margin="10,-4,0,0">
+                                <StackPanel Orientation="Horizontal">
+                                    <FontIcon Glyph="&#xE8C8;" Margin="0,0,0,0"/>
+                                    <TextBlock Margin="5,0,0,0">Click Me To Copy Text!</TextBlock>
+                                </StackPanel>
+                            </Button>
+                            <TeachingTip x:Name="CopyTeachingTip"
+                                    Title="Copied!"
+                                    Subtitle="The text has been copied to your clipboard."                         
+                                    IsLightDismissEnabled="True">
+                                <TeachingTip.IconSource>
+                                    <SymbolIconSource Symbol="Copy" />
+                                </TeachingTip.IconSource>
+                            </TeachingTip>
+                        </StackPanel>
+
+                        <Button x:Name="OpenLink1" Height="50" Click="OpenLink1_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>Error Report to Developer</TextBlock>
+                                <FontIcon Glyph="&#xE8A7;" Margin="10,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="OpenLink2" Height="50" HorizontalContentAlignment="Left" Click="OpenLink2_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>Developer of this Software: KienPC1234</TextBlock>
+                                <FontIcon Glyph="&#xE8A7;" Margin="10,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+                        <RichTextBlock Margin="10">
+                            <Paragraph>
+                                <Run Text="This software uses Zrok for secure tunneling. For more details, visit " />
+                                <Hyperlink NavigateUri="https://zrok.io/">
+                                    <Run Text="zrok.io" />
+                                </Hyperlink>
+                                <Run Text="." />
+                            </Paragraph>
+                        </RichTextBlock>
+                    </StackPanel>
+                </Expander.Content>
+            </Expander>
+        </StackPanel>
     </Grid>
 </Page>

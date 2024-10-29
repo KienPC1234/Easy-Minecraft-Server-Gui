@@ -6,11 +6,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Easy Minecraft Gui WinUI3"
+   
     mc:Ignorable="d">
-    <Grid  >
+    <Window.SystemBackdrop>
+        <MicaBackdrop Kind="BaseAlt"/>
+    </Window.SystemBackdrop>
+    <Grid  MinWidth="700">
         <Image Source="server.ico" Height="25" Width="25" Margin="46,12.5,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" />
         <TextBlock Text="Easy Minecraft Gui WinUI3" Margin="80,14,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left"/>
-        <NavigationView x:Name="nvSample" IsBackButtonVisible="Visible"   BackRequested="NvSample_BackRequested" >
+        <NavigationView x:Name="nvSample"  PaneDisplayMode="Auto" IsBackButtonVisible="Visible"  SizeChanged="nvSample_SizeChanged"  BackRequested="NvSample_BackRequested" >
             <NavigationView.Resources>
                 <Thickness x:Key="NavigationViewContentMargin">0,48,0,0</Thickness>
                 <Thickness x:Key="NavigationViewMinimalContentMargin">0,48,0,0</Thickness>
@@ -33,19 +37,16 @@
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE977;"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem Content="Info" Tag="InfoPage">
-                    <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE946;"/>
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
             </NavigationView.MenuItems>
-            <Frame x:Name="contentFrame" Background="Transparent">
-                <Frame.ContentTransitions>
-                    <TransitionCollection>
-                        <NavigationThemeTransition  />
-                    </TransitionCollection>
-                </Frame.ContentTransitions>
-            </Frame>
+            <ScrollViewer x:Name="Scollbar" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Frame x:Name="contentFrame" Background="Transparent" SizeChanged="contentFrame_SizeChanged">
+                    <Frame.ContentTransitions>
+                        <TransitionCollection>
+                            <NavigationThemeTransition />
+                        </TransitionCollection>
+                    </Frame.ContentTransitions>
+                </Frame>
+            </ScrollViewer>
         </NavigationView>
 
 

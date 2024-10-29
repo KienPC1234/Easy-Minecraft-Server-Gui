@@ -1,4 +1,5 @@
-﻿using Microsoft.UI;
+﻿using Easy_Minecraft_Server_Gui;
+using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -17,14 +18,18 @@ namespace Easy_Minecraft_Gui_WinUI3
         public MainWindow()
         {
             this.InitializeComponent();
-            bool Mica = TrySetMicaBackdrop(true);
-            m_AppWindow = GetAppWindowForCurrentWindow();
+            m_AppWindow = this.AppWindow;
             m_AppWindow.SetIcon("server.ico");
             contentFrame.Navigate(typeof(HomePage));
             nvSample.SelectionChanged += NvSample_SelectionChanged;
             contentFrame.Navigated += OnNavigated;
             SetTitleBarColors();
+            if (this.Content is FrameworkElement frameworkElement)
+            {
+                frameworkElement.RequestedTheme = ElementTheme.Dark;
+            }
         }
+
 
         bool TrySetMicaBackdrop(bool useMicaAlt)
         {
@@ -52,12 +57,6 @@ namespace Easy_Minecraft_Gui_WinUI3
             }
         }
 
-        private AppWindow GetAppWindowForCurrentWindow()
-        {
-            IntPtr hWnd = WindowNative.GetWindowHandle(this);
-            WindowId wndId = Win32Interop.GetWindowIdFromWindow(hWnd);
-            return AppWindow.GetFromWindowId(wndId);
-        }
 
         private void NvSample_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
@@ -107,9 +106,6 @@ namespace Easy_Minecraft_Gui_WinUI3
                 case "ServerPage":
                     pageType = typeof(ServerPage);
                     break;
-                case "InfoPage":
-                    pageType = typeof(InfoPage);
-                    break;
                 default:
                     pageType = typeof(SettingsPage);
                     break;
@@ -128,6 +124,27 @@ namespace Easy_Minecraft_Gui_WinUI3
                 return true;
             }
             return false;
+        }
+
+        private void nvSample_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            // Kiểm tra nếu chiều rộng cửa sổ nhỏ hơn một ngưỡng xác định
+            if (e.NewSize.Width < 900)
+            {
+                if (nvSample.PaneDisplayMode != NavigationViewPaneDisplayMode.LeftCompact)
+                {
+                    nvSample.PaneDisplayMode = NavigationViewPaneDisplayMode.LeftCompact;
+                }
+            }
+            else
+            {
+                nvSample.PaneDisplayMode = NavigationViewPaneDisplayMode.Left;
+            }
+        }
+
+        private void contentFrame_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            Scollbar.UpdateLayout();
         }
     }
 }
