@@ -64,11 +64,28 @@
                 </Button>
                 <ProgressBar x:Name="Loader" Width="auto" VerticalAlignment="Bottom" IsIndeterminate="True" ShowPaused="False" ShowError="False" Visibility="Collapsed" />
             </Grid>
+            <Grid>
+                <Button x:Name="Save" Height="60" HorizontalAlignment="Stretch" IsEnabled="True" HorizontalContentAlignment="Left" Click="Save_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon HorizontalAlignment="Left" VerticalAlignment="Center" Glyph="&#xE74E;" FontSize="30" Margin="5,0,0,0" />
+                        <TextBlock HorizontalAlignment="Right" Margin="15,0,0,0">
+                     <Run Text="Lưu Cài Đặt" FontWeight="Bold" />
+                     <LineBreak/>
+                     <Run Text="Nhấn Vào Nút Này Để Lưu Cài Đặt Server Của Bạn" FontSize="12"/>
+                        </TextBlock>
+                    </StackPanel>
+                </Button>
+                <ProgressBar x:Name="Loader2" Width="auto" VerticalAlignment="Bottom" IsIndeterminate="True" ShowPaused="False" ShowError="False" Visibility="Collapsed" />
+            </Grid>
             <Expander x:Name="Expander2" HorizontalAlignment="Stretch" >
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <FontIcon Glyph="&#xE897;"  VerticalAlignment="Center" />
-                        <TextBlock VerticalAlignment="Center" Margin="10,-4,0,0">Trợ Giúp   (Zrok Code: XXXXX)</TextBlock>
+                        <TextBlock VerticalAlignment="Center" Margin="10,-4,0,0">
+                            <Run>Trợ Giúp</Run>
+                            <Run></Run>
+                            <Run x:Name="ZrokCode" Text="Lỗi"></Run>
+                        </TextBlock>
                     </StackPanel>
                 </Expander.Header>
                 <Expander.Content>

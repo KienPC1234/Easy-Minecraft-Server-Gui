@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.IO;
 using Microsoft.UI.Xaml.Media.Animation;
 using System.Text.RegularExpressions;
-using Windows.Foundation;
+using Windows.UI.Popups;
 using Easy_Minecraft_Server_Gui;
 using System.Threading.Tasks;
 
@@ -24,10 +24,20 @@ namespace Easy_Minecraft_Gui_WinUI3
     /// </summary>
     public sealed partial class ServerPage : Page
     {
-        public ServerPage()
+        public  ServerPage()
         {
             this.InitializeComponent();
-        }
+            try
+            {
+                IpTextBox.Text = Share.GetIPv4Address();
+            }
+            catch(Exception ex)
+            {
+                Share.ShowNotification("Lỗi!", ex.Message);
+            }
+            ZrokCode.Text = Share.zrokcode();
+
+        } 
 
         private async void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -157,6 +167,28 @@ namespace Easy_Minecraft_Gui_WinUI3
 
 
 
+                await Share.ShowDialogAsync(Share.AP, base.XamlRoot);
+            });
+        }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            ComboBoxIP.IsEnabled = false;
+            IpTextBox.IsEnabled = false;
+            PortText.IsEnabled = false;
+            Loader2.Visibility = Visibility.Visible;
+
+            // Simulate a process (e.g., connecting to server)
+            // After the process is done, you can re-enable the button and hide the progress ring
+            // For now, let's just simulate a delay
+            DispatcherQueue.TryEnqueue(async () =>
+            {
+                await Task.Delay(3000); // Simulate a 3-second delay
+                // Hide the progress ring
+                Loader2.Visibility = Visibility.Collapsed;
+                ComboBoxIP.IsEnabled = true;
+                IpTextBox.IsEnabled = true;
+                PortText.IsEnabled = true;
                 await Share.ShowDialogAsync(Share.AP, base.XamlRoot);
             });
         }

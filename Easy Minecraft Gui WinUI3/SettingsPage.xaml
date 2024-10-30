@@ -23,7 +23,7 @@
                 <Image HorizontalAlignment="Left" Source="/Assets/zrok.png" Height="55" Margin="5,0,0,0" />
                 <TextBlock FontWeight="Bold" VerticalAlignment="Center" Margin="60,-20,0,0">Zrok Code</TextBlock>
                 <TextBlock VerticalAlignment="Center" FontSize="11" Margin="60,20,0,0">Cảnh Báo Mã Của Người Mở Sever Và Mã Người Vào Phải Giống Nhau!</TextBlock>
-                <TextBox HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,15,0" PlaceholderText="Nhập Mã Zrok Ở Đây"></TextBox>
+                <TextBox HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,15,0" PlaceholderText="Nhập Mã Zrok Ở Đây" Width="162"></TextBox>
             </Grid>
 
             <Grid>
@@ -43,7 +43,7 @@
                 <FontIcon Glyph="&#xE793;"  HorizontalAlignment="Left" FontSize="32" Margin="15,0,0,0"/>
                 <TextBlock FontWeight="Bold" VerticalAlignment="Center" Margin="60,-20,0,0">App Color</TextBlock>
                 <TextBlock VerticalAlignment="Center" FontSize="12" Margin="60,20,0,0">Thay Đổi Màu Của Ứng Dụng</TextBlock>
-                <ComboBox x:Name="ComboBoxLight" SelectionChanged="ComboBoxLight_SelectionChanged" Margin="0,0,15,0" Width="162" HorizontalAlignment="Right" VerticalAlignment="Center" SelectedValue="Tự Động">
+                <ComboBox x:Name="ComboBoxLight" SelectionChanged="ComboBoxLight_SelectionChanged" Margin="0,0,15,0" Width="161.5" HorizontalAlignment="Right" VerticalAlignment="Center" SelectedValue="Tự Động">
                     <x:String>Dark</x:String>
                     <x:String>Light</x:String>
                     <x:String>Tự Động</x:String>
@@ -57,7 +57,7 @@
                         <TextBlock HorizontalAlignment="Right" Margin="10,0,0,0">
                                 <Run Text="Lưu Cài Đặt" FontWeight="Bold" />
                                 <LineBreak/>
-                                <Run Text="Nhấn Vào Nút Này Để Lưu Cài Đặt" FontSize="10"/>
+                                <Run Text="Nhấn Vào Nút Này Để Lưu Cài Đặt" FontSize="12"/>
                         </TextBlock>
                     </StackPanel>
                 </Button>

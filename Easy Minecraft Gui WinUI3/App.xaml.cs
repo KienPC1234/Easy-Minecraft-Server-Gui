@@ -6,7 +6,6 @@ using WinRT.Interop;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
-using Microsoft.UI.Xaml.Shapes;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,8 +13,9 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
+using Easy_Minecraft_Server_Gui;
 using Windows.Foundation.Collections;
+using System.Diagnostics;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -34,6 +34,35 @@ namespace Easy_Minecraft_Gui_WinUI3
         public App()
         {
             this.InitializeComponent();
+            Current.UnhandledException += Current_UnhandledException;
+
+        }
+
+
+        private void Current_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
+        {
+            // Hiển thị thông báo
+            Share.ShowNotification("Ứng Dụng Bị Lỗi (Vui Lòng Gửi Lỗi Cho Nhà Phát Triển)", e.Message + "\n" + "Mã Lỗi: " + e.Exception);
+
+            Process.Start(new ProcessStartInfo("https://github.com/KienPC1234/Easy-Minecraft-Server-Gui/issues") { UseShellExecute = true });
+            // Tạo file text để lưu thông tin lỗi
+            string fileName = "ErrorLog.txt";
+            string filePath = Path.Combine(Share.AP, fileName);
+
+            // Nội dung sẽ được ghi vào file
+            string content = $"Ứng Dụng Bị Lỗi\n{e.Message}\nMã Lỗi: {e.Exception}";
+
+            // Ghi nội dung vào file
+            File.WriteAllText(filePath, content);
+
+            // Mở file sau khi ghi
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = filePath,
+                UseShellExecute = true
+            });
+
+            e.Handled = true; // Đánh dấu lỗi là đã được xử lý
         }
 
         /// <summary>

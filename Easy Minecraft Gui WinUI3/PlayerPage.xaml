@@ -37,7 +37,11 @@
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <FontIcon Glyph="&#xE897;"  VerticalAlignment="Center" />
-                        <TextBlock VerticalAlignment="Center" Margin="10,-4,0,0">Trợ Giúp   (Zrok Code: XXXXX)</TextBlock>
+                        <TextBlock VerticalAlignment="Center" Margin="10,-4,0,0">
+                            <Run>Trợ Giúp</Run>
+                            <Run></Run>
+                            <Run x:Name="ZrokCode" Text="Lỗi"></Run>
+                        </TextBlock>
                     </StackPanel>
                 </Expander.Header>
                 <Expander.Content>

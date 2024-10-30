@@ -1,4 +1,5 @@
 <Window
+    x:Name="Windows"
     x:Class="Easy_Minecraft_Gui_WinUI3.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -6,15 +7,20 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Easy Minecraft Gui WinUI3"
-   
+    SizeChanged="Window_SizeChanged"
     mc:Ignorable="d">
     <Window.SystemBackdrop>
         <MicaBackdrop Kind="BaseAlt"/>
     </Window.SystemBackdrop>
     <Grid  MinWidth="700">
-        <Image Source="server.ico" Height="25" Width="25" Margin="46,12.5,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" />
-        <TextBlock Text="Easy Minecraft Gui WinUI3" Margin="80,14,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left"/>
-        <NavigationView x:Name="nvSample"  PaneDisplayMode="Auto" IsBackButtonVisible="Visible"  SizeChanged="nvSample_SizeChanged"  BackRequested="NvSample_BackRequested" >
+        <StackPanel x:Name="TitleBar" Orientation="Horizontal" VerticalAlignment="Top">
+            <StackPanel.RenderTransform>
+                <TranslateTransform x:Name="TitleBarTransform" />
+            </StackPanel.RenderTransform>
+            <Image Source="server.ico" Height="25" Width="25" Margin="46,12.5,0,0"  VerticalAlignment="Center" HorizontalAlignment="Left" />
+            <TextBlock Text="Easy Minecraft Gui WinUI3" Margin="10,10.75,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+        </StackPanel>
+        <NavigationView x:Name="nvSample"  IsBackButtonVisible="Visible" BackRequested="NvSample_BackRequested" >
             <NavigationView.Resources>
                 <Thickness x:Key="NavigationViewContentMargin">0,48,0,0</Thickness>
                 <Thickness x:Key="NavigationViewMinimalContentMargin">0,48,0,0</Thickness>

@@ -28,6 +28,7 @@ namespace Easy_Minecraft_Gui_WinUI3
         public PlayerPage()
         {
             this.InitializeComponent();
+            ZrokCode.Text = Share.zrokcode();
         }
 
 

@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using Easy_Minecraft_Gui_WinUI3;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml;
+using Microsoft.Windows.AppNotifications.Builder;
+using Microsoft.Windows.AppNotifications;
+using Windows.Security.Cryptography.Core;
 
 namespace Easy_Minecraft_Server_Gui
 {
@@ -16,47 +19,11 @@ namespace Easy_Minecraft_Server_Gui
     {
         public static string AP = AppContext.BaseDirectory;
 
-
-
-        public static async Task<string> Command(string[] commands, bool NoShowCMD = true, string Logfile = "CMD_LOG.txt")
+        public static string zrokcode()
         {
-            string output;
-            try
-            {
-                Process cmd = new Process();
-                cmd.StartInfo.FileName = "cmd.exe";
-                cmd.StartInfo.RedirectStandardInput = true;
-                cmd.StartInfo.RedirectStandardOutput = true;
-                cmd.StartInfo.CreateNoWindow = NoShowCMD;
-                cmd.StartInfo.UseShellExecute = false;
-                cmd.StartInfo.WorkingDirectory = AP;
-
-                cmd.Start();
-
-                using (StreamWriter inputWriter = cmd.StandardInput)
-                {
-                    if (inputWriter.BaseStream.CanWrite)
-                    {
-                        foreach (string command in commands)
-                        {
-                            inputWriter.WriteLine(command);
-                        }
-                        inputWriter.WriteLine("exit");
-                    }
-                }
-                output = cmd.StandardOutput.ReadToEnd();
-                cmd.WaitForExit();
-                string logFilePath = Path.Combine(AP, Logfile);
-                File.WriteAllText(logFilePath, output);
-                return output;
-            }
-            catch (Exception ex)
-            {
-                App.Current.Exit();
-                return string.Empty;
-            }
+            string code = "XXXXX";
+            return $"(Zrok Code: {code})";
         }
-
         public static string GetIPv4Address()
         {
             // Lấy tất cả các địa chỉ IP của máy tính
@@ -83,6 +50,19 @@ namespace Easy_Minecraft_Server_Gui
             };
 
             await dialog.ShowAsync();
+        }
+        public static void ShowNotification(string Title, string content)
+        {
+            // Khởi tạo AppNotificationBuilder
+            var notificationBuilder = new AppNotificationBuilder()
+                .AddText(Title)
+                .AddText(content);
+
+            // Tạo AppNotification
+            var notification = notificationBuilder.BuildNotification();
+
+            // Hiển thị thông báo
+            AppNotificationManager.Default.Show(notification);
         }
     }
 }

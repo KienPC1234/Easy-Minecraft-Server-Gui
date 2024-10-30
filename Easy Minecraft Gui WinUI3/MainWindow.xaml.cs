@@ -28,6 +28,15 @@ namespace Easy_Minecraft_Gui_WinUI3
             {
                 frameworkElement.RequestedTheme = ElementTheme.Dark;
             }
+            //size
+            if (contentFrame.Width < 700)
+            {
+                nvSample.PaneDisplayMode = NavigationViewPaneDisplayMode.LeftMinimal;
+            }
+            else
+            {
+                nvSample.PaneDisplayMode = NavigationViewPaneDisplayMode.Auto;
+            }
         }
 
 
@@ -126,25 +135,43 @@ namespace Easy_Minecraft_Gui_WinUI3
             return false;
         }
 
-        private void nvSample_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            // Kiểm tra nếu chiều rộng cửa sổ nhỏ hơn một ngưỡng xác định
-            if (e.NewSize.Width < 900)
-            {
-                if (nvSample.PaneDisplayMode != NavigationViewPaneDisplayMode.LeftCompact)
-                {
-                    nvSample.PaneDisplayMode = NavigationViewPaneDisplayMode.LeftCompact;
-                }
-            }
-            else
-            {
-                nvSample.PaneDisplayMode = NavigationViewPaneDisplayMode.Left;
-            }
-        }
-
         private void contentFrame_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             Scollbar.UpdateLayout();
+        }
+
+        private void Window_SizeChanged(object sender, WindowSizeChangedEventArgs args)
+        {
+            // Set the PaneDisplayMode based on window width
+            if (args.Size.Width < 800)
+            {
+                nvSample.PaneDisplayMode = NavigationViewPaneDisplayMode.LeftMinimal;
+            }
+            else
+            {
+                nvSample.PaneDisplayMode = NavigationViewPaneDisplayMode.Auto;
+            }
+
+            // Define the target X offset for the TitleBar based on window width
+            double targetOffsetX = args.Size.Width < 800 ? 40 : 0;
+
+            // Create a storyboard for the animation
+            Storyboard storyboard = new Storyboard();
+            DoubleAnimation offsetAnimation = new DoubleAnimation
+            {
+                Duration = new Duration(TimeSpan.FromMilliseconds(150)), // Faster animation
+                To = targetOffsetX,
+                EasingFunction = new CubicEase { EasingMode = EasingMode.EaseInOut } // Smooth easing
+            };
+
+            // Set the animation target to the TranslateTransform of TitleBar
+            Storyboard.SetTarget(offsetAnimation, TitleBarTransform);
+            Storyboard.SetTargetProperty(offsetAnimation, "X");
+
+            // Clear any existing animations on TitleBarTransform and add the new one
+            storyboard.Children.Clear();
+            storyboard.Children.Add(offsetAnimation);
+            storyboard.Begin();
         }
     }
 }
