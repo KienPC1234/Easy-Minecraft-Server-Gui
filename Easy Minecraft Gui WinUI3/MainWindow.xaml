@@ -9,9 +9,6 @@
     Title="Easy Minecraft Gui WinUI3"
     SizeChanged="Window_SizeChanged"
     mc:Ignorable="d">
-    <Window.SystemBackdrop>
-        <MicaBackdrop Kind="BaseAlt"/>
-    </Window.SystemBackdrop>
     <Grid  MinWidth="700">
         <StackPanel x:Name="TitleBar" Orientation="Horizontal" VerticalAlignment="Top">
             <StackPanel.RenderTransform>

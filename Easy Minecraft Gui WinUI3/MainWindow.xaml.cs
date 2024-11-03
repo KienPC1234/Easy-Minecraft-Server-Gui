@@ -5,6 +5,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
+using Microsoft.Windows.ApplicationModel.DynamicDependency;
 using System;
 using System.Linq;
 using Windows.UI.ApplicationSettings;
@@ -18,16 +19,13 @@ namespace Easy_Minecraft_Gui_WinUI3
         public MainWindow()
         {
             this.InitializeComponent();
+            OnRun();
             m_AppWindow = this.AppWindow;
             m_AppWindow.SetIcon("server.ico");
             contentFrame.Navigate(typeof(HomePage));
             nvSample.SelectionChanged += NvSample_SelectionChanged;
             contentFrame.Navigated += OnNavigated;
             SetTitleBarColors();
-            if (this.Content is FrameworkElement frameworkElement)
-            {
-                frameworkElement.RequestedTheme = ElementTheme.Dark;
-            }
             //size
             if (contentFrame.Width < 700)
             {
@@ -39,6 +37,50 @@ namespace Easy_Minecraft_Gui_WinUI3
             }
         }
 
+        private void OnRun()
+        {
+            var st = Settings.LoadSettings();
+            switch (st.Backdrop)
+            {
+                case Settings.BackdropEnum.MicaAltBackdrop:
+                    var setbk = TrySetMicaBackdrop(true);
+                    break;
+                case Settings.BackdropEnum.MicaBackdrop:
+                    var setbk2 = TrySetMicaBackdrop(false);
+                    break;
+                case Settings.BackdropEnum.AcrylicBackdrop:
+                    var setbk3 = TrySetDesktopAcrylicBackdrop;
+                    break;
+            }
+            if (this.Content is FrameworkElement frameworkElement)
+            {
+                switch (st.Theme)
+                {
+                    case Settings.ThemeEnum.Dark:
+                        frameworkElement.RequestedTheme = ElementTheme.Dark;
+                        break;
+                    case Settings.ThemeEnum.Light:
+                        frameworkElement.RequestedTheme = ElementTheme.Light;
+                        break;
+                    case Settings.ThemeEnum.Auto:
+                        frameworkElement.RequestedTheme = ElementTheme.Default;
+                        break;
+                }
+            }
+        }
+
+        bool TrySetDesktopAcrylicBackdrop()
+        {
+            if (Microsoft.UI.Composition.SystemBackdrops.DesktopAcrylicController.IsSupported())
+            {
+                Microsoft.UI.Xaml.Media.DesktopAcrylicBackdrop DesktopAcrylicBackdrop = new Microsoft.UI.Xaml.Media.DesktopAcrylicBackdrop();
+                this.SystemBackdrop = DesktopAcrylicBackdrop;
+
+                return true; // Succeeded.
+            }
+
+            return false; // DesktopAcrylic is not supported on this system.
+        }
 
         bool TrySetMicaBackdrop(bool useMicaAlt)
         {
@@ -103,25 +145,32 @@ namespace Easy_Minecraft_Gui_WinUI3
 
         private void NavigateToPage(string pageTag)
         {
-            Type pageType = null;
-            switch (pageTag)
+            if (Share.iszrokrun == false)
             {
-                case "HomePage":
-                    pageType = typeof(HomePage);
-                    break;
-                case "PlayerPage":
-                    pageType = typeof(PlayerPage);
-                    break;
-                case "ServerPage":
-                    pageType = typeof(ServerPage);
-                    break;
-                default:
-                    pageType = typeof(SettingsPage);
-                    break;
+                Type pageType = null;
+                switch (pageTag)
+                {
+                    case "HomePage":
+                        pageType = typeof(HomePage);
+                        break;
+                    case "PlayerPage":
+                        pageType = typeof(PlayerPage);
+                        break;
+                    case "ServerPage":
+                        pageType = typeof(ServerPage);
+                        break;
+                    default:
+                        pageType = typeof(SettingsPage);
+                        break;
+                }
+                if (pageType != null && contentFrame.CurrentSourcePageType != pageType)
+                {
+                    contentFrame.Navigate(pageType, null, new DrillInNavigationTransitionInfo());
+                }
             }
-            if (pageType != null && contentFrame.CurrentSourcePageType != pageType)
+            else
             {
-                contentFrame.Navigate(pageType, null, new DrillInNavigationTransitionInfo());
+                Share.ShowNotification("Lỗi","Bạn Đang sử Dụng Dịch Vụ Zrok, Vui Lòng Dừng Để Chuyển Paage Khác!");
             }
         }
 

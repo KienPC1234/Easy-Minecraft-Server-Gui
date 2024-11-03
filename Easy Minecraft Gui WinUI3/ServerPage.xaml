@@ -63,7 +63,46 @@
                     </StackPanel>
                 </Button>
                 <ProgressBar x:Name="Loader" Width="auto" VerticalAlignment="Bottom" IsIndeterminate="True" ShowPaused="False" ShowError="False" Visibility="Collapsed" />
+                <StackPanel x:Name="sv" HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal" Margin="0,0,18,0" Visibility="Collapsed">
+                    <TextBlock   Margin="0,-4.5,10,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="16">Mã Server:</TextBlock>
+                    <Button Click="Button_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <FontIcon Glyph="&#xE8C8;" />
+                            <TextBlock x:Name="ServerCode" Margin="10,0,0,0">XXXXXXXXXXXX</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <TeachingTip x:Name="CopyTeachingTip"
+                        Title="Copied!"
+                        Subtitle="The text has been copied to your clipboard."                         
+                        IsLightDismissEnabled="True">
+                        <TeachingTip.IconSource>
+                            <SymbolIconSource Symbol="Copy" />
+                        </TeachingTip.IconSource>
+                    </TeachingTip>
+                </StackPanel>
             </Grid>
+            <Expander x:Name="Expander1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" >
+                <Expander.Header>
+                    <Grid >
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+                            <FontIcon Glyph="&#xEC77;"  VerticalAlignment="Center" Margin="2,0,0,0" FontSize="30"/>
+                            <TextBlock VerticalAlignment="Center" Margin="15,-4.5,0,0">
+                    <Run FontWeight="Bold" FontSize="16">Trạng Thái:</Run>
+                    <Run></Run>
+                    <Run x:Name="StatusCode" Text="Đã Tắt"></Run>
+                            </TextBlock>
+                        </StackPanel>
+                        <Button x:Name="Stop" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,0" Click="Stop_Click" IsEnabled="False">Dừng</Button>
+                    </Grid>
+                </Expander.Header>
+                <Expander.Content>
+                    <Grid>
+                        <RichTextBlock Width="850">
+                            <Paragraph x:Name="myParagraph">Nothing...</Paragraph>
+                        </RichTextBlock>
+                    </Grid>
+                </Expander.Content>
+            </Expander>
             <Grid>
                 <Button x:Name="Save" Height="60" HorizontalAlignment="Stretch" IsEnabled="True" HorizontalContentAlignment="Left" Click="Save_Click">
                     <StackPanel Orientation="Horizontal">
